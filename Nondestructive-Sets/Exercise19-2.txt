@@ -1,0 +1,37 @@
+Exercise 19.2
+From highschool, you know the following set operations:
+
+Intersection
+What overlaps in A and B.
+
+Union
+Merges A and B.
+
+Difference
+If A contains something that B also contains, it gets removed from A.
+
+Subtask 1
+First, declare a NondestructiveSet<T> interface (i.e., a parameterized NondestructiveSet)
+with the methods:
+• Intersection The intersection contains all elements that are in both sets.
+• Union The union contains all elements that are in at least one of the sets.
+• Difference The difference contains all elements from one set that are not in another set.
+
+These methods all take a NondestructiveSet<T> parameter and return a new NondestructiveSet<T>.
+
+Subtask 2
+Next, you need to implement a NondestructiveHashSet<T> class that inherits from HashSet<T>
+and implements NondestructiveSet<T>. Make sure that none of the methods from NondestructiveSet<T>
+affect their inputs.
+
+Subtask 3
+Demonstrate that your implementation works as expected.
+
+Subtask 4
+Extend your NondestructiveSet<T> class with methods for:
+• IsDisjoint which returns true if and only if the NondestructiveSet<T> argument it
+    receives has no elements in common with itself.
+• IsSubset which returns true if and only if all elements in its parameter (of type NondestructiveSet<T>)
+    exist in itself.
+    
+Implement these in NondestructiveHashSet<T> and demonstrate correctness.
