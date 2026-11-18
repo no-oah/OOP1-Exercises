@@ -1,0 +1,24 @@
+In the following program, there is a Sum method that is written to sum up the values of a series
+of numbers. The program also has a Main method that defines two test cases and prints the
+result of calling Sum on each of them. However, it seems that Sum is not written correctly. Can
+you figure out what is wrong and fix the code?
+
+public class Adder
+{
+    public static int Sum (int[] numbers) {
+        int result = 0;
+        for (int i=1 ; i<=numbers.Length ; i++) {
+            result += i;
+        }
+        return result;
+    }
+
+    public static void Main (string[] args) {
+        int[] testcase1 = {1, 3, 5, 2, 3, 7};
+        int[] testcase2 = {5, 6, 2, 3};
+        Console.WriteLine(Sum(testcase1));
+        Console.WriteLine(Sum(testcase2));
+    }
+}
+
+The mistake is in the for-loop. It adds "i" to the result, but "i" is just the iterations of the for-loop, so for an array of four variables, it would calculate: 1+2+3+4=10, although the values in the array were different. To fix this, the for-loop is changed to start int i at 0, only run for as long as i<numbers.Length(), and result += numbers[i] (the index of the array).
