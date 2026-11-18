@@ -1,0 +1,74 @@
+The following program describes a situation where a person wants to buy 15 items, each costing
+6000 DKK. This person has an amount in his bankbook and owns a house of modest value. In
+addition, the individual has a distorted perception of his own happiness. The following program
+simulates how the individual purchases affect the individual’s happiness.
+
+    public class Happiness
+    {
+        const int ITEM_PRICE = 6000;
+        const int ITEM_COUNT = 15;
+        const int HOUSE_VALUE = 8000;
+        
+        static int account = 30000;
+        static bool ownsHouse = true;
+    
+        static bool AccountIsPositive () {
+            return account>0;
+        }
+    
+        static bool BuyItem (int price) {
+            account -= price;
+            return AccountIsPositive();
+        }
+    
+        // returns true if able to sell house or no sale necessary
+        static bool SellHouseIfNecessary () {
+            if (!AccountIsPositive()) {
+                if (!ownsHouse) return false;
+    
+                account += HOUSE_VALUE;
+                ownsHouse = false;
+            }
+            return true;
+        }
+    
+        static void PrintState () {
+            Console.WriteLine("account="+account+" ownsHouse="+ownsHouse);
+        }
+        
+        public static void Main (String[] args) {
+            bool happy;
+            for (int i=0 ; i<ITEM_COUNT ; i++) {
+            happy = (AccountIsPositive() && BuyItem(ITEM_PRICE))
+                    || SellHouseIfNecessary();
+            Console.WriteLine("I am "+(happy ? "" : "not ")
+                            +"happy and my account is "+account);
+            }
+        }
+    }
+
+Subtask 1
+The Main method consists of a loop where each iteration (through some method calls) works on
+the variables account, ownsHouse and happy.
+Start by running the program manually. This means that you sit down with a piece of paper
+(you decide whether it should be physical or virtual). On this paper you draw a table with a
+column for each of the three variables and a line for each of the 15 iterations. For each iteration,
+you now fill in the values that the three variables have after calculating happy.
+How do you do that? Well, you pretend to be the CLR virtual machine that can interpret
+compiled C# code, follow the method calls that are made and note which variables are written
+to along the way.
+What will the program print out?
+Find in "humancompiler.txt"
+
+Subtask 2
+Get the CLR virtual machine to execute the program. What does it actually print out?
+Find in "humancompiler.txt"
+
+Subtask 3
+Is there a match between what you have guessed it will print out and what it actually prints
+out?
+In the event of a mismatch, you must track down where this mismatch occurs, and investigate
+whether there is a problem in your understanding of how C# interprets the code, or whether you
+had simply overlooked something. To do this, you insert printouts at appropriate places in the
+code.
+Without looking at the code, I know this is because you can't buy something if your account is in negative, because it uses a conditional AND (&&) operand, which doesnt evaluate the right side operand if the left side returns false (which it does), so buyitem is never called.
