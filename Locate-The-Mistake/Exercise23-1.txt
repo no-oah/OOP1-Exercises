@@ -1,0 +1,25 @@
+The following program – given an arbitrary value for the variable points – is supposed to tell
+you whether you have passed a course:
+
+    class Score {
+        public static void Main (string[] args) {
+            int points = 0; // imagine an arbitrary number of points between 0 and 100
+            
+            Console.Write("You ");
+            
+            if (points >= 50) {
+                Console.Write("PASSED");
+            }
+            
+            if (points <= 50) {
+                Console.Write("FAILED");
+            }
+            
+            Console.WriteLine("!");
+        }
+    }
+
+However, a bug has crept in!
+Locate and fix the bug.
+
+    If points == 50, both if statements are true (because its greater/lesser than or equal to) and it returns "You PASSEDFAILED!". This is either fixed by using "else if" or changing one of the <= / >= to < / >.
